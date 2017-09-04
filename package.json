@@ -1,0 +1,17 @@
+{
+  "name": "react-bodymovin-component",
+  "version": "1.0.0",
+  "description": "React component to use with bodymovin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Viljami Anttonen",
+  "license": "ISC",
+  "dependencies": {
+    "bodymovin": "^4.10.2",
+    "classnames": "^2.2.5",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1"
+  }
+}
