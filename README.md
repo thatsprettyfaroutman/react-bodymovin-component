@@ -1,5 +1,8 @@
 # react-bodymovin-component
 
+React [bodymovin](https://github.com/bodymovin/bodymovin) wrapper thingy.
+![WD DOGGY](https://media.giphy.com/media/3ohhwvr6CZopVx2pz2/giphy.gif)
+
 ### Usage
 ```
   import Bodymovin from 'react-bodymovin-component'
