@@ -2,10 +2,10 @@
   "name": "react-bodymovin-component",
   "version": "1.0.0",
   "description": "React component to use with bodymovin",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src -d dist && npm version patch"
+    "build": "babel src -d dist && cp src/index.css dist/ && npm version patch"
   },
   "author": "Viljami Anttonen",
   "license": "ISC",
