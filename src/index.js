@@ -9,6 +9,7 @@ class Bodymovin extends Component {
   constructor(props) {
     super(props)
     this._played = props.played
+    this._speed = props.speed
     this._dom = null
     this._anim = null
   }
@@ -29,29 +30,37 @@ class Bodymovin extends Component {
     this._anim.setSpeed(this.props.speed)
   }
 
-  componentWillReceiveProps(newProps) {
-    if (this._played === newProps.played) return
-    if (!this._played) {
-      this._anim.setDirection(1)
-      this._anim.goToAndPlay(1, true)
-    } else {
-      this._anim.setDirection(-1)
-      this._anim.goToAndPlay(0xffffff, true)
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.speed !== this._speed) {
+      this._anim.setSpeed(nextProps.speed)
+      this._speed = nextProps.speed
     }
-    this._played = newProps.played
+
+    if (this._played !== nextProps.played) {
+      if (!this._played) {
+        this._anim.setDirection(1)
+        this._anim.goToAndPlay(1, true)
+      } else {
+        this._anim.setDirection(-1)
+        this._anim.goToAndPlay(0xffffff, true)
+      }
+      this._played = nextProps.played
+    }
+
   }
 
   componentWillUnmount() {
     this._anim.destroy()
     this._anim = null
     this._dom = null
+    this._speed = null
   }
 
   render() {
-    const { hasSafeArea, className } = this.props
+    const { className } = this.props
     return (
       <div
-        className={classNames('Bodymovin', {'Bodymovin--hasSafeArea': hasSafeArea}, className)}
+        className={classNames('Bodymovin', className)}
         ref={dom => this._dom = dom}
       />
     )
@@ -62,7 +71,6 @@ Bodymovin.propTypes = {
   src: PropTypes.object.isRequired,
   speed: PropTypes.number,
   played: PropTypes.bool,
-  hasSafeArea: PropTypes.bool,
   loop: PropTypes.bool,
   autoplay: PropTypes.bool,
   className: PropTypes.string,
@@ -71,7 +79,6 @@ Bodymovin.propTypes = {
 Bodymovin.defaultProps = {
   speed: 1,
   played: false,
-  hasSafeArea: false,
   loop: false,
   autoplay: false,
   className: null,

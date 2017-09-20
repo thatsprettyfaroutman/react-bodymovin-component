@@ -30,7 +30,6 @@ React [bodymovin](https://github.com/bodymovin/bodymovin) wrapper thingy.
 | `src` | *required | Source json |
 | `speed` | 1 | Speed multiplier, or something like that |
 | `played` | false | Boolean to toggle whether animation should be played or not. Good for toggling animations |
-| `hasSafeArea` | false | Safe area to support particles outside of the block. Used in one of my own projects... |
 | `loop` | false | Loop animation |
 | `autoplay` | false | Autoplay animation |
 | `className` | null | Css classname |
