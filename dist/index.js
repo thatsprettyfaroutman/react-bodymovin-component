@@ -41,6 +41,7 @@ var Bodymovin = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Bodymovin.__proto__ || Object.getPrototypeOf(Bodymovin)).call(this, props));
 
     _this._played = props.played;
+    _this._speed = props.speed;
     _this._dom = null;
     _this._anim = null;
     return _this;
@@ -65,16 +66,22 @@ var Bodymovin = function (_Component) {
     }
   }, {
     key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(newProps) {
-      if (this._played === newProps.played) return;
-      if (!this._played) {
-        this._anim.setDirection(1);
-        this._anim.goToAndPlay(1, true);
-      } else {
-        this._anim.setDirection(-1);
-        this._anim.goToAndPlay(0xffffff, true);
+    value: function componentWillReceiveProps(nextProps) {
+      if (nextProps.speed !== this._speed) {
+        this._anim.setSpeed(nextProps.speed);
+        this._speed = nextProps.speed;
       }
-      this._played = newProps.played;
+
+      if (this._played !== nextProps.played) {
+        if (!this._played) {
+          this._anim.setDirection(1);
+          this._anim.goToAndPlay(1, true);
+        } else {
+          this._anim.setDirection(-1);
+          this._anim.goToAndPlay(0xffffff, true);
+        }
+        this._played = nextProps.played;
+      }
     }
   }, {
     key: 'componentWillUnmount',
@@ -82,18 +89,17 @@ var Bodymovin = function (_Component) {
       this._anim.destroy();
       this._anim = null;
       this._dom = null;
+      this._speed = null;
     }
   }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
 
-      var _props = this.props,
-          hasSafeArea = _props.hasSafeArea,
-          className = _props.className;
+      var className = this.props.className;
 
       return _react2.default.createElement('div', {
-        className: (0, _classnames2.default)('Bodymovin', { 'Bodymovin--hasSafeArea': hasSafeArea }, className),
+        className: (0, _classnames2.default)('Bodymovin', className),
         ref: function ref(dom) {
           return _this2._dom = dom;
         }
@@ -108,7 +114,6 @@ Bodymovin.propTypes = {
   src: _propTypes2.default.object.isRequired,
   speed: _propTypes2.default.number,
   played: _propTypes2.default.bool,
-  hasSafeArea: _propTypes2.default.bool,
   loop: _propTypes2.default.bool,
   autoplay: _propTypes2.default.bool,
   className: _propTypes2.default.string
@@ -117,7 +122,6 @@ Bodymovin.propTypes = {
 Bodymovin.defaultProps = {
   speed: 1,
   played: false,
-  hasSafeArea: false,
   loop: false,
   autoplay: false,
   className: null
