@@ -86,6 +86,7 @@ var Bodymovin = function (_Component) {
   }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
+      _bodymovin2.default.destroy()
       this._anim.destroy();
       this._anim = null;
       this._dom = null;
