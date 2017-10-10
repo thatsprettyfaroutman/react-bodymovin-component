@@ -50,7 +50,6 @@ class Bodymovin extends Component {
   }
 
   componentWillUnmount() {
-    bodymovin.destroy()
     this._anim.destroy()
     this._anim = null
     this._dom = null

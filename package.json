@@ -10,7 +10,7 @@
   "author": "Viljami Anttonen",
   "license": "ISC",
   "dependencies": {
-    "bodymovin": "^4.10.2",
+    "bodymovin": "^4.11.1",
     "classnames": "^2.2.5",
     "prop-types": "^15.5.10",
     "react": "^15.6.1"
